@@ -3,8 +3,8 @@
 import { redirect } from 'next/navigation';
 
 import { auth } from '@/lib/auth';
-import { loginShema } from '@/components/forms/schemas';
-import { LoginShemaType } from '@/components/forms/types';
+import { loginShema } from '@/components/forms/auth/schemas';
+import { LoginShemaType } from '@/components/forms/auth/types';
 
 export const login = async (data: LoginShemaType) => {
   const validationResult = loginShema.safeParse(data);
