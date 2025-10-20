@@ -22,5 +22,5 @@ export const signup = async (data: SignupShemaType) => {
 
   await auth.api.signUpEmail({ body: { ...data, name: data.fullName } });
 
-  redirect('/decks');
+  redirect('/dashboard/decks');
 };
