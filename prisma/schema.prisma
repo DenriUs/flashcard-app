@@ -15,7 +15,7 @@ datasource db {
 }
 
 model User {
-  id            String    @id
+  id            String    @id @default(cuid()) 
   name          String
   email         String
   emailVerified Boolean   @default(false)
@@ -25,12 +25,14 @@ model User {
   sessions      Session[]
   accounts      Account[]
 
+  decks         Deck[]
+
   @@unique([email])
   @@map("user")
 }
 
 model Session {
-  id        String   @id
+  id        String   @id @default(cuid()) 
   expiresAt DateTime
   token     String
   createdAt DateTime @default(now())
@@ -45,7 +47,7 @@ model Session {
 }
 
 model Account {
-  id                    String    @id
+  id                    String    @id @default(cuid()) 
   accountId             String
   providerId            String
   userId                String
@@ -64,7 +66,7 @@ model Account {
 }
 
 model Verification {
-  id         String   @id
+  id         String   @id @default(cuid()) 
   identifier String
   value      String
   expiresAt  DateTime
@@ -72,4 +74,17 @@ model Verification {
   updatedAt  DateTime @default(now()) @updatedAt
 
   @@map("verification")
+}
+
+model Deck {
+  id            String    @id @default(cuid()) 
+  title         String
+  description   String?
+  userId        String
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @default(now()) @updatedAt
+
+  user          User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("deck")
 }

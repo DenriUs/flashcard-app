@@ -1,4 +1,4 @@
-import zod, { email } from 'zod';
+import zod from 'zod';
 
 export const loginShema = zod.object({
   email: zod.email(),
