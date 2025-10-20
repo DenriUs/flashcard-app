@@ -2,6 +2,8 @@
 
 Flashcard app is a **Next.js web application** that will help different people to memorize information and increase their knowledge.
 
+🚧 Currently, all changes are presented in the development branch.
+
 ## 📋 TODO
 
 - [x] Add credentials auth
