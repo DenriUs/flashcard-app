@@ -11,6 +11,7 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Field, FieldDescription, FieldError, FieldGroup, FieldLabel } from '@/components/ui/field';
 import { Input } from '@/components/ui/input';
+import { Spinner } from '@/components/ui/spinner';
 
 import { SignupShemaType } from './types';
 import { signupShema } from './schemas';
@@ -36,8 +37,8 @@ export function SignupForm() {
     const result = await signup(values);
     if (result?.error) {
       setErrorText(result.error);
+      setIsSubmitting(false);
     }
-    setIsSubmitting(false);
   };
 
   return (
@@ -122,7 +123,7 @@ export function SignupForm() {
               {errorText && <FieldError errors={[{ message: errorText }]} />}
               <Field>
                 <Button type='submit' disabled={isSubmitting}>
-                  Signup
+                  {isSubmitting ? <Spinner /> : 'Signup'}
                 </Button>
                 <Button variant='outline' type='button' disabled={isSubmitting}>
                   Login with Google

@@ -4,8 +4,8 @@ import { redirect } from 'next/navigation';
 
 import { prisma } from '@/lib/db-client';
 import { auth } from '@/lib/auth';
-import { signupShema } from '@/components/forms/schemas';
-import { SignupShemaType } from '@/components/forms/types';
+import { signupShema } from '@/components/forms/auth/schemas';
+import { SignupShemaType } from '@/components/forms/auth/types';
 
 export const signup = async (data: SignupShemaType) => {
   const validationResult = signupShema.safeParse(data);

@@ -11,6 +11,7 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Field, FieldDescription, FieldError, FieldGroup, FieldLabel } from '@/components/ui/field';
 import { Input } from '@/components/ui/input';
+import { Spinner } from '@/components/ui/spinner';
 
 import { LoginShemaType } from './types';
 import { loginShema } from './schemas';
@@ -34,8 +35,8 @@ export function LoginForm() {
     const result = await login(values);
     if (result?.error) {
       setErrorText(result.error);
+      setIsSubmitting(false);
     }
-    setIsSubmitting(false);
   };
 
   return (
@@ -89,7 +90,7 @@ export function LoginForm() {
               {errorText && <FieldError errors={[{ message: errorText }]} />}
               <Field>
                 <Button type='submit' disabled={isSubmitting}>
-                  Login
+                  {isSubmitting ? <Spinner /> : 'Login'}
                 </Button>
                 <Button variant='outline' type='button' disabled={isSubmitting}>
                   Login with Google
