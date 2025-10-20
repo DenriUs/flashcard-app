@@ -13,7 +13,11 @@ export const login = async (data: LoginShemaType) => {
     return { error: 'Invalid field values' };
   }
 
-  auth.api.signInEmail({ body: { ...data, callbackURL: '/decks' } });
+  try {
+    await auth.api.signInEmail({ body: { ...data } });
+  } catch (error) {
+    return { error: 'Invalid password or email' };
+  }
 
-  redirect('/decks');
+  redirect('/dashboard/decks');
 };
